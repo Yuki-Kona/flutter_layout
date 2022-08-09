@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:git_layout/appbar_1.dart';
+import 'package:git_layout/main_model.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,12 +11,20 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(
+        providers: [
+          //provider
+          ChangeNotifierProvider<MainModel>(
+            create:(context)=>MainModel(),
+        ),
+      ],
+      child: MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(),
+      )
     );
   }
 }
@@ -27,6 +38,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+  //モデル
+    final MainModel mainModelData = Provider.of<MainModel>(context,listen:true);
+
+    //画面表示
     return Scaffold(
       appBar: AppBar(
         title: const Text('レイアウトの練習'),
@@ -36,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.all(10.0),
           child: ListView(
 
-            children: const [
+            children: [
               //appBarのレイアウト選択
               Center(
                 child: Text('appBarのレイアウト',
@@ -59,6 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         fontWeight: FontWeight.w500,
                         ),
                       ),
+                      onTap: (){
+                        Navigator.push(context,MaterialPageRoute(builder: (context)=>const AppBar1()));
+                      },
                     ),
                   ),
                 )
