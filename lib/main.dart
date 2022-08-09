@@ -37,6 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: ListView(
 
             children: const [
+              //appBarのレイアウト選択
               Center(
                 child: Text('appBarのレイアウト',
                 style: TextStyle(
