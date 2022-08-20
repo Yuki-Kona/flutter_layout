@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:photo_view/photo_view.dart';
 import 'package:provider/provider.dart';
 
-import 'main_model.dart';
+import '../main_model.dart';
 
 class AppBar1 extends StatelessWidget{
   const AppBar1({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class AppBar1 extends StatelessWidget{
       body:SizedBox(
         child: Padding(
           padding: const EdgeInsets.only(top:10.0,left: 20,right: 20),
-          child: ListView(
+          child: Column(
             children: [
                 TextField(
                   decoration: InputDecoration(
@@ -51,6 +52,16 @@ class AppBar1 extends StatelessWidget{
                   mainModelData.heightChang(int.parse(heightNumber));
                   }
                 },
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Container(
+                width: 350,
+                height: 400,
+                child: PhotoView(
+                  imageProvider: const NetworkImage("http://www.visibone.com/color/hexagon_800.gif"),
+                ),
               )
             ],
           ),

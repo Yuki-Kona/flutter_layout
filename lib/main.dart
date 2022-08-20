@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:git_layout/appbar_1.dart';
+import 'package:git_layout/app_bar/appbar_1.dart';
 import 'package:git_layout/main_model.dart';
 import 'package:provider/provider.dart';
 
@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
   //モデル
-    final MainModel mainModelData = Provider.of<MainModel>(context,listen:true);
+    //final MainModel mainModelData = Provider.of<MainModel>(context,listen:true);
 
     //画面表示
     return Scaffold(
@@ -49,11 +49,12 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SizedBox(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: ListView(
-
+          child: SizedBox(
+            height: 250,
+            child: Column(
             children: [
               //appBarのレイアウト選択
-              Center(
+              const Center(
                 child: Text('appBarのレイアウト',
                 style: TextStyle(
                   fontSize: 25,
@@ -63,25 +64,56 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               SizedBox(
                   height: 200,
-                child: Card(
-                  elevation: 10,
-                  child: Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: ListTile(
-                      title: Text('レイアウト1',
-                      style: TextStyle(
-                        fontSize:20,
-                        fontWeight: FontWeight.w500,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    decoration:BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                      border: Border.all(width:1),
+                      boxShadow: const [
+                        BoxShadow(
+                        color:Colors.black26,
+                        spreadRadius:1.0,
+                        blurRadius: 10.0,
+                        offset:Offset(10,10),
+                      )],
+                    ),
+                    child: ListView(
+                      children:[
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              border: Border(
+                                  top:BorderSide(
+                                    color: Colors.black,
+                                  ),
+                                  bottom: BorderSide(
+                                    color: Colors.black,
+                                  )
+                              ),
+                            ),
+                            child: ListTile(
+                              title: const Text('色と高さを変える',
+                                style: TextStyle(
+                                  fontSize:20,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              onTap: (){
+                                Navigator.push(context,MaterialPageRoute(builder: (context)=>const AppBar1()));
+                              },
+                            ),
+                          ),
                         ),
-                      ),
-                      onTap: (){
-                        Navigator.push(context,MaterialPageRoute(builder: (context)=>const AppBar1()));
-                      },
+                      ],
                     ),
                   ),
-                )
+                ),
               ),
-            ],
+              ]
+            ),
           ),
         ),
       )
